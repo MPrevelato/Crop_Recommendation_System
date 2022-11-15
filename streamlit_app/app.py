@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 from PIL import Image
-from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 
 st.set_page_config(
