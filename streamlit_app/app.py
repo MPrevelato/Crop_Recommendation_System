@@ -33,7 +33,7 @@ with col5:
     rain_input = st.number_input('Insert Avg Rainfall (mm) value:', min_value= 21.0, max_value= 298.0, step = 0.1, format="%.2f")
 
 
-df = pd.read_csv('Crop_recommendation.csv')
+df = pd.read_csv('../streamlit_app/Crop_recommendation.csv')
 
 X = df.drop('label', axis = 1)
 y = df['label']
