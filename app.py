@@ -2,6 +2,9 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import plotly.express as px
+from plotly.subplots import make_subplots
+import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 from PIL import Image
 from sklearn.naive_bayes import GaussianNB
 
@@ -44,9 +47,15 @@ gnb.fit(X,y)
 
 predict_inputs = [[n_input,p_input,k_input,temp_input,hum_input,ph_input,rain_input]]
 
+
+
+
 with col5:
-    st.text('Get your Prediction:')
-    if st.button('Prediction'):
-        gnb_predicted_value = gnb.predict(predict_inputs)
-        st.text('Crop suggestion: {}'.format(gnb_predicted_value[0]))
+    predict_btn = st.button('Get Your Prediction')
+
+if predict_btn:
+    gnb_predicted_value = gnb.predict(predict_inputs)
+    st.text('Crop suggestion: {}'.format(gnb_predicted_value[0]))
         
+    df_pred = df[df['label'] == gnb_predicted_value[0]]
+    st.dataframe(df_pred.describe(), use_container_width=True)
