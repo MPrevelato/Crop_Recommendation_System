@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from PIL import Image
 from joblib import Parallel, delayed
 import joblib
+import shap
 
 
 st.set_page_config(
@@ -43,7 +44,7 @@ df = pd.read_csv('Crop_recommendation.csv')
 X = df.drop('label', axis = 1)
 y = df['label']
 
-rdf_clf = joblib.load('rdf_clf.pkl')
+rdf_clf = joblib.load('final_rdf_clf.pkl')
 
 
 predict_inputs = [[n_input,p_input,k_input,temp_input,hum_input,ph_input,rain_input]]
