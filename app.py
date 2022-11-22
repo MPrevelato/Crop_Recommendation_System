@@ -1,14 +1,19 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import numpy as np
 import pandas as pd
 import plotly.express as px
 from plotly.subplots import make_subplots
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 import plotly.graph_objects as go
 from PIL import Image
+from sklearn.inspection import permutation_importance
 from joblib import Parallel, delayed
+from sklearn.ensemble import RandomForestClassifier
 import joblib
-import shap
+
+
+
 
 
 st.set_page_config(
@@ -16,6 +21,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
 
 with st.sidebar:
     st.markdown('Crop Recommendation System')
@@ -46,7 +52,6 @@ y = df['label']
 
 rdf_clf = joblib.load('final_rdf_clf.pkl')
 
-
 predict_inputs = [[n_input,p_input,k_input,temp_input,hum_input,ph_input,rain_input]]
 
 with col5:
@@ -58,3 +63,10 @@ if predict_btn:
         
     df_pred = df[df['label'] == rdf_predicted_value[0]]
     st.dataframe(df_pred.describe(), use_container_width=True)
+
+
+    importance = pd.DataFrame({'feature': list(X.columns),
+                   'importance': rdf_clf.feature_importances_}).\
+                    sort_values('importance', ascending = False)
+    
+    st.dataframe(importance)
