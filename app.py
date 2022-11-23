@@ -68,7 +68,7 @@ st.markdown("""
       <h6 style='text-align: center;'>
         This Application is a Random Forest model that give 
         recommendations to farmers based on an Indian Crop 
-        Recommendation <a style='text-align: center; color: black;' 
+        Recommendation <a style='text-align: center; color: blue;' 
         href="https://www.kaggle.com/datasets/atharvaingle/crop-recommendation-dataset">Dataset</a>.
         This way, by inserting N, P, K and pH based on your soil conditions
         or the desired values of these 4 values (changed by fertilizers), and by giving
