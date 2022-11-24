@@ -12,7 +12,7 @@ from joblib import Parallel, delayed
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 
-
+pd.options.display.max_colwidth = 2000
 st.set_page_config(
     page_title="Crop Recommendation System",
     layout="wide",
@@ -62,7 +62,10 @@ with st.sidebar:
 st.markdown("<h1 style='text-align: center; color: black;'>Crop Recommendation System</h1>", unsafe_allow_html=True)
 st.markdown("<h5 style='text-align: center;'>This Application predict what is the best crop to plant based on NPK values and Weather Conditions!</h5>", unsafe_allow_html= True)
 
-st.markdown("""
+
+colx, coly, colz = st.columns([1,4,1], gap = 'medium')
+with coly:
+    st.markdown("""
   
     
       <h6 style='text-align: center;'>
@@ -78,7 +81,7 @@ st.markdown("""
         impacts the model.
       </h6>
   
-""", unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
 df = pd.read_csv('Crop_recommendation.csv')
 
@@ -86,6 +89,8 @@ rdf_clf = joblib.load('final_rdf_clf.pkl')
 
 X = df.drop('label', axis = 1)
 y = df['label']
+
+df_desc = pd.read_csv('Crop_Desc.csv', sep = ';', encoding = 'utf-8', encoding_errors = 'ignore')
 
 st.markdown("<h5 style='text-align: center;'>Importance of each Feature in the Model:</h5>", unsafe_allow_html=True)
 
@@ -129,24 +134,33 @@ with col5:
     predict_btn = st.button('Get Your Recommendation!')
 
 
-cola,colb,colc = st.columns([0.1,10,0.1])
+cola,colb,colc = st.columns([2,10,2])
 if predict_btn:
     rdf_predicted_value = rdf_clf.predict(predict_inputs)
     #st.text('Crop suggestion: {}'.format(rdf_predicted_value[0]))
     with colb:
         st.markdown(f"<h3 style='text-align: center;'>Best Crop to Plant: {rdf_predicted_value[0]}.</h3>", 
         unsafe_allow_html=True)
-        st.markdown(f"""<h5 style='text-align: center;'>Statistics Summary about {rdf_predicted_value[0]} 
-        NPK and Weather Conditions values in the Dataset.</h5>""", unsafe_allow_html=True)
-        df_pred = df[df['label'] == rdf_predicted_value[0]]
-        st.dataframe(df_pred.describe(), use_container_width=True)
+    col1, col2, col3 = st.columns([9,4,9])
+    with col2:
+        df_desc = df_desc.astype({'label':str,'image':str})
+        df_desc['label'] = df_desc['label'].str.strip()
+        df_desc['image'] = df_desc['image'].str.strip()
+        
+
+        df_pred_image = df_desc[df_desc['label'].isin(rdf_predicted_value)]
+        df_image = df_pred_image['image'].item()
+        
+        st.markdown(f"""<h5 style = 'text-align: center; height: 300px; object-fit: contain;'> {df_image} </h5>""", unsafe_allow_html=True)
+        
 
     
+    st.markdown(f"""<h5 style='text-align: center;'>Statistics Summary about {rdf_predicted_value[0]} 
+            NPK and Weather Conditions values in the Dataset.</h5>""", unsafe_allow_html=True)
+    df_pred = df[df['label'] == rdf_predicted_value[0]]
+    st.dataframe(df_pred.describe(), use_container_width=True)        
+    
 
-    #image = Image.open('./assets/corn.jpg')
-    #new_image = image.resize((200, 200))
-    #st.image(new_image)
-  
     
     
 
