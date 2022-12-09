@@ -14,7 +14,7 @@ For the requirements you can access the [requirements.txt](https://github.com/MP
 
 ## Streamlit
 
-The Web Was was made on Streamlit, you can see the code on the [app.py](https://github.com/MPrevelato/Crop_Recommendation_System/blob/main/app.py),you can use use it and edit offline on your machine by installing the requirements.txt and by running this code in the Terminal:
+The Web App was made on Streamlit, you can see the code on the [app.py](https://github.com/MPrevelato/Crop_Recommendation_System/blob/main/app.py),you can use use it and edit offline on your machine by installing the requirements.txt and by running this code in the Terminal:
 
 ```
 streamlit run app.py
