@@ -55,7 +55,7 @@ with st.sidebar:
     You can find my Linkedin and GitHub profiles below:</h4>""",unsafe_allow_html=True)
     st.markdown(f"""<h4 style='text-align: center; color: black;'>
      <a style='text-align: center; color: black;' type="button" class="btn btn-warning btn-lg" 
-     href = "https://github.com/MPrevelato/Crop_Recommendation_System">Github</a> <a style='text-align: center; color: black;' 
+     href = "https://github.com/MPrevelato/Crop_Recommendation_System">GitHub</a> <a style='text-align: center; color: black;' 
      type="button" class="btn btn-warning btn-lg" 
      href = "https://www.linkedin.com/in/mateus-prevelato/">Linkedin</a></h4>""", unsafe_allow_html=True)
 
