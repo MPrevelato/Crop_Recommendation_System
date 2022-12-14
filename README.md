@@ -1,4 +1,4 @@
-# Crop_Recommendation_System
+# Crop Recommendation System
 
 This application was created based on a Kaggle dataset that can be accessed by the link below:
 
