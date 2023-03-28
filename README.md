@@ -22,5 +22,22 @@ The Web App was made on Streamlit, you can see the code on the [app.py](https://
 streamlit run app.py
 ```
 
+## Docker
 
+It is possible to run the Streamlit App using Docker. So, for this I've uploaded the [Dockerfile](https://github.com/MPrevelato/Crop_Recommendation_System/blob/main/Dockerfile) into this repository. So on the root of this folder you can use this command in the Terminal to build the container image:
+```
+docker image build -f Dockerfile -t crop_app:latest
+```
+Using -f to references the Dockerfile to build the image and -t to tag that image.
+
+After this you just need to run the container with the Streamlit App:
+
+```
+docker container run -p 8501:8501 crop_app:latest
+
+```
+
+The -p flag is used to map the container’s port to the host port, by default Streamlit uses port 8501.
+
+Now you can access your application here: [http://localhost:8501/](http://localhost:8501/)
 
