@@ -34,7 +34,6 @@ After this you just need to run the container with the Streamlit App:
 
 ```
 docker container run -p 8501:8501 crop_app:latest
-
 ```
 
 The -p flag is used to map the container’s port to the host port, by default Streamlit uses port 8501.
