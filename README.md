@@ -26,9 +26,9 @@ streamlit run app.py
 
 It is possible to run the Streamlit App using Docker. So, for this I've uploaded the [Dockerfile](https://github.com/MPrevelato/Crop_Recommendation_System/blob/main/Dockerfile) into this repository. So on the root of this folder you can use this command in the Terminal to build the container image:
 ```
-docker image build -f Dockerfile -t crop_app:latest
+docker image build -f Dockerfile -t crop_app:latest .
 ```
-Using -f to references the Dockerfile to build the image and -t to tag that image.
+Using -f to references the Dockerfile to build the image and -t to tag that image. The " ." in the end indicates that the Dockerfile are in the current directory.
 
 After this you just need to run the container with the Streamlit App:
 
